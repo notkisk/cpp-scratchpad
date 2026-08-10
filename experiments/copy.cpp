@@ -31,7 +31,7 @@ public:
     return stream;
   }
 int main(){
-  String string = "Cherno";
+  String string = "nnul";
   String second = string;
   second[2] = 'a';
   std::cout << string << std::endl;
