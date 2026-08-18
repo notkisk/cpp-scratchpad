@@ -17,6 +17,11 @@ int main()
     std::cout << std::setw(16) << "float:" << sizeof(float) << " bytes\n";
     std::cout << std::setw(16) << "double:" << sizeof(double) << " bytes\n";
     std::cout << std::setw(16) << "long double:" << sizeof(long double) << " bytes\n";
+  int x{0};
+    for (int i = 0; i<= 1000000000; i ++){
+      x+=i;
+  }
+  std::cout << std::setw(16) << "your billion" << x<<"\n";
 
     return 0;
 }

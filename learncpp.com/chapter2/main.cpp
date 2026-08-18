@@ -3,6 +3,7 @@
 #define HAITHEM
 #include "things.h"
 
+
 void foo(){
   #define SOMETHING "something"
   something();
