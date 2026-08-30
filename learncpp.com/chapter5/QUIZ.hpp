@@ -1,5 +1,5 @@
-#ifndef QUIZ
-#define QUIZ
+#ifndef QUIZ_HPP
+#define QUIZ_HPP
 #include <string>
 #include <string_view>
 std::string getName(const unsigned int& personNumber);
