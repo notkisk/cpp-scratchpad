@@ -35,9 +35,10 @@ int main() {
   // or not, in this case it won't, because 5 can be considered unsigned int
   // without any narrowing conversion
   constexpr int s2{-5};
-  unsigned int us2{
-      s2}; // this will result in a compile error, the conversion is narrowing,
-           // because the value will change from -5 to
+  // unsigned int us2{
+  //     s2}; // this will result in a compile error, the conversion is
+  //     narrowing,
+  // because the value will change from -5 to
   // 2^32 -5 which is considered a narrowing conversion and list initilization
   // disallow this type of conversion
   std::cin.get();
