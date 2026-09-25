@@ -4,7 +4,7 @@ namespace Color {
 enum Color : unsigned int { red, green, blue };
 }
 namespace Days_Space {
-enum Days : long {
+enum Days : std::int8_t {
   saturday = 1,
   sunday = 2,
   monday = 3,
@@ -35,7 +35,7 @@ int main() {
   using namespace Days_Space;
   using namespace Monster;
   [[maybe_unused]] MonesterType monster{MonesterType::troll};
-  Days days{divorceday};
+  Days_Space::Days days{divorceday};
 
   // what will divorceday print?
   std::cout << days << '\n';
