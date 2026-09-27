@@ -34,13 +34,6 @@ std::ostream &operator<<(std::ostream &out, const T &content) {
 template <typename T> constexpr auto operator+(T a) noexcept {
   return static_cast<std::underlying_type_t<T>>(a);
 }
-template <class T>
-concept C = requires(T t) {
-  { t + 1 } -> std::convertible_to<int>
-};
-int main() {
-  []<C auto...>(auto &&...x) { ((std::cout << (x + 1)), ...); }(1, 2, 3);
-}
 int main() {
 
   Color color{Color::red}; // note: red is not directly accessible, we have to
