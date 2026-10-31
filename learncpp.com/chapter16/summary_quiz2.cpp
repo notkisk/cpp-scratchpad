@@ -1,4 +1,6 @@
+#include <ios>
 #include <iostream>
+#include <limits>
 #include <vector>
 
 template <typename T>
@@ -29,28 +31,55 @@ template <typename T> void printArray(const std::vector<T> &v) {
   std::cout << " ):\n";
 }
 
+void clearInput() {
+  if (std::cin.eof()) {
+    std::exit(1);
+  }
+  std::cin.clear();
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+template <typename T> std::vector<T> readUserInput() {
+  if constexpr (std::is_integral_v<T> || std::is_floating_point_v<T>) {
+    std::cout << "Enter numbers to add (use -1 to stop): ";
+    std::vector<T> v{};
+    T entry{};
+    while (true) {
+      if (!(std::cin >> entry)) {
+        clearInput();
+        continue;
+      }
+      if (entry == -1)
+        return v;
+
+      v.push_back(entry);
+    }
+  }
+}
+
 int main() {
-  std::vector v1{3, 8, 2, 5, 7, 8, 3};
-  printArray(v1);
+  std::vector v1{readUserInput<int>()};
+  if (v1.size() == 0) {
+    std::cout << "The array has no elements\n";
+  } else {
+    auto m1{findMinMaxIndices(v1)};
+    std::cout << "The min element has index " << m1.first << " and value "
+              << v1[m1.first] << '\n';
+    std::cout << "The max element has index " << m1.second << " and value "
+              << v1[m1.second] << '\n';
 
-  auto m1{findMinMaxIndices(v1)};
-  std::cout << "The min element has index " << m1.first << " and value "
-            << v1[m1.first] << '\n';
-  std::cout << "The max element has index " << m1.second << " and value "
-            << v1[m1.second] << '\n';
+    std::cout << '\n';
 
-  std::cout << '\n';
+    std::vector v2{5.5, 2.7, 3.3, 7.6, 1.2, 8.8, 6.6};
+    printArray(v2);
 
-  std::vector v2{5.5, 2.7, 3.3, 7.6, 1.2, 8.8, 6.6};
-  printArray(v2);
+    auto m2{findMinMaxIndices(v2)};
+    std::cout << "The min element has index " << m2.first << " and value "
+              << v2[m2.first] << '\n';
+    std::cout << "The max element has index " << m2.second << " and value "
+              << v2[m2.second] << '\n';
+  }
 
-  auto m2{findMinMaxIndices(v2)};
-  std::cout << "The min element has index " << m2.first << " and value "
-            << v2[m2.first] << '\n';
-  std::cout << "The max element has index " << m2.second << " and value "
-            << v2[m2.second] << '\n';
-
-  return 0;
   std::cin.get();
   return 0;
 }
